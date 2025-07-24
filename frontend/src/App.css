@@ -1,0 +1,321 @@
+/* App Container */
+.app {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%);
+  color: white;
+  overflow: hidden;
+}
+
+/* Header */
+.app-header {
+  text-align: center;
+  padding: 1rem;
+  background: rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  flex-shrink: 0;
+}
+
+.app-header h1 {
+  font-size: 2rem;
+  margin: 0 0 0.25rem 0;
+  background: linear-gradient(45deg, #00d4ff, #ff6b6b, #4ecdc4);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: 700;
+}
+
+.app-header p {
+  font-size: 0.9rem;
+  opacity: 0.8;
+  margin: 0;
+}
+
+/* Main Content */
+.app-main {
+  flex: 1;
+  padding: 0.5rem;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  overflow: hidden;
+}
+
+/* Cube Size Selector */
+.cube-size-selector {
+  text-align: center;
+  margin-bottom: 0.5rem;
+  z-index: 10;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.cube-size-selector label {
+  font-size: 1.1rem;
+  margin-right: 1rem;
+  font-weight: 500;
+}
+
+.cube-size-selector select {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+  backdrop-filter: blur(10px);
+}
+
+.cube-size-selector select option {
+  background: #333;
+  color: white;
+}
+
+/* Rubik's Cube Container */
+.rubiks-cube-container {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  gap: 1rem;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.cube-canvas {
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 0 50px rgba(0, 212, 255, 0.2), inset 0 0 20px rgba(255, 255, 255, 0.05);
+  background: radial-gradient(circle at center, rgba(255, 255, 255, 0.08) 0%, rgba(0, 0, 0, 0.2) 100%);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  flex: 3;
+  min-height: 0;
+}
+
+/* Controls */
+.cube-controls {
+  text-align: center;
+  flex: 1;
+  max-width: 350px;
+  min-width: 280px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+}
+
+.control-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+
+.btn {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  min-width: 100px;
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btn-scramble {
+  background: linear-gradient(45deg, #ff6b6b, #ff8e53);
+  color: white;
+  box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+}
+
+.btn-scramble:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(255, 107, 107, 0.4);
+}
+
+.btn-solve {
+  background: linear-gradient(45deg, #00d4ff, #4ecdc4);
+  color: white;
+  box-shadow: 0 4px 15px rgba(0, 212, 255, 0.3);
+}
+
+.btn-solve:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(78, 205, 196, 0.4);
+}
+
+.btn-reset {
+  background: linear-gradient(45deg, #667eea, #764ba2);
+  color: white;
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+}
+
+.btn-reset:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(168, 237, 234, 0.4);
+}
+
+/* Scramble Display */
+.scramble-display {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 1.5rem;
+  border-radius: 12px;
+  margin-bottom: 1.5rem;
+  backdrop-filter: blur(10px);
+}
+
+.scramble-display h4 {
+  margin: 0 0 1rem 0;
+  font-size: 1.1rem;
+}
+
+.scramble-sequence {
+  font-family: 'Courier New', monospace;
+  font-size: 1.1rem;
+  background: rgba(0, 0, 0, 0.2);
+  padding: 1rem;
+  border-radius: 8px;
+  word-break: break-all;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* Cube Info */
+.cube-info {
+  display: flex;
+  justify-content: space-around;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 1rem;
+  border-radius: 8px;
+  backdrop-filter: blur(10px);
+}
+
+.cube-info p {
+  margin: 0;
+  font-weight: 500;
+}
+
+/* Loading */
+.loading {
+  text-align: center;
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  margin: 2rem 0;
+  backdrop-filter: blur(10px);
+}
+
+.loading p {
+  font-size: 1.2rem;
+  margin: 0;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+/* Solution Display */
+.solution-display {
+  background: rgba(78, 205, 196, 0.2);
+  border: 2px solid rgba(78, 205, 196, 0.5);
+  padding: 2rem;
+  border-radius: 12px;
+  margin: 2rem 0;
+  backdrop-filter: blur(10px);
+}
+
+.solution-display h3 {
+  margin: 0 0 1rem 0;
+  color: #4ecdc4;
+}
+
+.solution-display p {
+  margin: 0.5rem 0;
+  font-size: 1.1rem;
+}
+
+.solution-display strong {
+  color: #4ecdc4;
+}
+
+/* Footer */
+.app-footer {
+  text-align: center;
+  padding: 0.75rem;
+  background: rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(10px);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  flex-shrink: 0;
+}
+
+.app-footer p {
+  margin: 0;
+  opacity: 0.6;
+  font-size: 0.8rem;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .rubiks-cube-container {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .cube-controls {
+    max-width: none;
+    min-width: auto;
+  }
+  
+  .control-buttons {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .app-header h1 {
+    font-size: 2rem;
+  }
+  
+  .app-main {
+    padding: 0.5rem;
+  }
+  
+  .control-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .btn {
+    width: 200px;
+  }
+  
+  .cube-info {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .scramble-sequence {
+    font-size: 0.9rem;
+  }
+}
