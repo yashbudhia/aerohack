@@ -52,7 +52,7 @@ export class CubeEngine {
       U: null, D: null, L: null, R: null, F: null, B: null
     };
 
-    // Assign colors based on position on cube faces
+    // Only assign colors to faces that are on the exterior of the cube
     if (y === this.size - 1) colors.U = CUBE_COLORS.U; // Top face
     if (y === 0) colors.D = CUBE_COLORS.D; // Bottom face
     if (x === 0) colors.L = CUBE_COLORS.L; // Left face

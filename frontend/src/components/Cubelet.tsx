@@ -13,16 +13,25 @@ const Cubelet: React.FC<CubeletProps> = ({ data }) => {
   const stickerDepth = 0.01;
 
   // Create the black plastic base
-  const createBase = () => (
-    <mesh>
-      <boxGeometry args={[cubeletSize, cubeletSize, cubeletSize]} />
-      <meshStandardMaterial 
-        color="#1a1a1a" 
-        metalness={0.1} 
-        roughness={0.8}
-      />
-    </mesh>
-  );
+  const createBase = () => {
+    // Only render the base if this cubelet has at least one visible face
+    const hasVisibleFace = Object.values(data.colors).some(color => color !== null);
+    
+    if (!hasVisibleFace) {
+      return null; // Don't render internal cubelets
+    }
+    
+    return (
+      <mesh>
+        <boxGeometry args={[cubeletSize, cubeletSize, cubeletSize]} />
+        <meshStandardMaterial 
+          color="#0a0a0a" 
+          metalness={0.2} 
+          roughness={0.9}
+        />
+      </mesh>
+    );
+  };
 
   // Create colored stickers for visible faces
   const createStickers = () => {
@@ -41,13 +50,14 @@ const Cubelet: React.FC<CubeletProps> = ({ data }) => {
       if (color) {
         stickers.push(
           <mesh key={face} position={position} rotation={rotation}>
-            <boxGeometry args={[stickerSize, stickerSize, stickerDepth]} />
+            <planeGeometry args={[stickerSize, stickerSize]} />
             <meshStandardMaterial 
               color={color}
               metalness={0.0}
-              roughness={0.2}
+              roughness={0.1}
               emissive={color}
-              emissiveIntensity={0.05}
+              emissiveIntensity={0.08}
+              side={2}
             />
           </mesh>
         );
@@ -56,6 +66,13 @@ const Cubelet: React.FC<CubeletProps> = ({ data }) => {
 
     return stickers;
   };
+
+  // Only render if this cubelet has visible faces
+  const hasVisibleFace = Object.values(data.colors).some(color => color !== null);
+  
+  if (!hasVisibleFace) {
+    return null;
+  }
 
   return (
     <group

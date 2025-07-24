@@ -29,14 +29,14 @@ export interface SolveResponse {
   method: string;
 }
 
-// Standard cube colors - more vibrant and realistic
+// Standard cube colors - authentic and vibrant
 export const CUBE_COLORS = {
-  U: '#f8f8ff', // White (Up) - slightly off-white for better visibility
-  D: '#ffd700', // Yellow (Down) - gold yellow
-  L: '#ff6600', // Orange (Left) - vibrant orange
-  R: '#dc143c', // Red (Right) - crimson red
-  F: '#32cd32', // Green (Front) - lime green
-  B: '#1e90ff', // Blue (Back) - dodger blue
+  U: '#ffffff', // White (Up) - pure white
+  D: '#ffed00', // Yellow (Down) - bright yellow
+  L: '#ff5722', // Orange (Left) - vibrant orange
+  R: '#f44336', // Red (Right) - bright red
+  F: '#4caf50', // Green (Front) - vibrant green
+  B: '#2196f3', // Blue (Back) - bright blue
 } as const;
 
 // Move parsing utilities
